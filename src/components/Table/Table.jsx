@@ -11,6 +11,16 @@ import {
 import PropTypes from "prop-types";
 
 import tableStyle from "../../variables/styles/tableStyle";
+const bwStyle = {
+  background: "#FF0000"
+};
+const heightStyle = {
+  height: "30px"
+};
+
+const fontSizeTable = {
+  fontSize: "10px"
+};
 
 function CustomTable({ ...props }) {
   const { classes, tableHead, tableData, tableHeaderColor } = props;
@@ -36,10 +46,17 @@ function CustomTable({ ...props }) {
         <TableBody>
           {tableData.map((prop, key) => {
             return (
-              <TableRow key={key}>
+              <TableRow key={key} style={heightStyle}>
                 {prop.map((prop, key) => {
                   return (
-                    <TableCell className={classes.tableCell} key={key}>
+                    <TableCell
+                      className={classes.tableCell}
+                      key={key}
+                      style={
+                        //typeof prop === "number" && prop > 100 ? bwStyle : {}
+                        fontSizeTable
+                      }
+                    >
                       {prop}
                     </TableCell>
                   );

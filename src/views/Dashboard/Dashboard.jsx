@@ -53,16 +53,19 @@ class Dashboard extends React.Component {
           <Subscribe to={[ConsoleContainer]}>
             {CC =>
               CC.state.cdnboxesHTTP.map((cdnbox, i) => {
+                console.log(cdnbox);
                 return (
                   <ItemGrid key={i} xs={12} sm={6} md={3}>
                     <StatsCard
                       icon={Store}
                       iconColor="blue"
                       title={cdnbox.local.name}
-                      description={Math.ceil(cdnbox.local.trendbw)}
-                      small="MB"
                       statIcon={Update}
                       statText="Just Updated"
+                      description={Math.ceil(cdnbox.local.trendbw)}
+                      small="MB"
+                      statBox={cdnbox.cdnboxes}
+                      release={cdnbox.release}
                     />
                   </ItemGrid>
                 );
