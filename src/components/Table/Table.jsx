@@ -11,15 +11,23 @@ import {
 import PropTypes from "prop-types";
 
 import tableStyle from "../../variables/styles/tableStyle";
-const bwStyle = {
-  background: "#FF0000"
+
+const bwStyleAlert = {
+  background: "#e53935",
+  fontSize: "11px"
 };
+
+const bwStyleOK = {
+  background: "#66bb6a",
+  fontSize: "11px"
+};
+
 const heightStyle = {
   height: "30px"
 };
 
 const fontSizeTable = {
-  fontSize: "10px"
+  fontSize: "11px"
 };
 
 function CustomTable({ ...props }) {
@@ -53,8 +61,11 @@ function CustomTable({ ...props }) {
                       className={classes.tableCell}
                       key={key}
                       style={
-                        //typeof prop === "number" && prop > 100 ? bwStyle : {}
-                        fontSizeTable
+                        key === 1 || key === 2
+                          ? parseInt(prop, 10) > 150
+                            ? bwStyleAlert
+                            : bwStyleOK
+                          : fontSizeTable
                       }
                     >
                       {prop}

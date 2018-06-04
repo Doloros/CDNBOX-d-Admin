@@ -53,7 +53,6 @@ class Dashboard extends React.Component {
           <Subscribe to={[ConsoleContainer]}>
             {CC =>
               CC.state.cdnboxesHTTP.map((cdnbox, i) => {
-                console.log(cdnbox);
                 return (
                   <ItemGrid key={i} xs={12} sm={6} md={3}>
                     <StatsCard
@@ -66,6 +65,14 @@ class Dashboard extends React.Component {
                       small="MB"
                       statBox={cdnbox.cdnboxes}
                       release={cdnbox.release}
+                      releaseStyle={
+                        CC.state.releases.indexOf(
+                          parseInt(cdnbox.release, 10)
+                        ) ===
+                        CC.state.releases.length - 1
+                          ? { color: "#66bb6a" }
+                          : { color: "#ef5350" }
+                      }
                     />
                   </ItemGrid>
                 );

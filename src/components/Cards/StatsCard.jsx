@@ -1,6 +1,10 @@
 import React from "react";
 import { Grid } from "material-ui";
 
+import IconButton from "material-ui/IconButton";
+import ZoomIn from "material-ui-icons/ZoomIn";
+import ZoomOut from "material-ui-icons/ZoomOut";
+
 import { RegularCard, Table, ItemGrid } from "../../components";
 import {
   withStyles,
@@ -31,17 +35,27 @@ const loaderStyle = {
   right: "20%"
 };
 
+const cardStyle = {
+  justifyContent: "space-between"
+};
+
 class StatsCard extends React.Component {
   constructor(props) {
     super(props);
     this.handleAccept = this.handleAccept.bind(this);
     this.handleClickOpen = this.handleClickOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.updateToggleStat = this.updateToggleStat.bind(this);
     this.state = {
       open: false,
-      query: "idle"
+      query: "idle",
+      toggleStat: false
     };
   }
+
+  updateToggleStat = () => {
+    this.setState({ toggleStat: !this.state.toggleStat });
+  };
 
   handleClickOpen = () => {
     this.setState({ open: true });
@@ -97,20 +111,32 @@ class StatsCard extends React.Component {
       rootName,
       customStyle,
       statBox,
-      release
+      release,
+      releaseStyle
     } = this.props;
-    //console.log(statBox);
     const props = this.props;
     const { query } = this.state;
-
+    let buttonStat =
+      statBox === undefined ? (
+        ""
+      ) : (
+        //<Button onClick={this.updateToggleStat}>Show</Button>
+        <IconButton aria-label="Delete">
+          {this.state.toggleStat ? (
+            <ZoomOut onClick={this.updateToggleStat} />
+          ) : (
+            <ZoomIn onClick={this.updateToggleStat} />
+          )}
+        </IconButton>
+      );
     let showStats =
-      statBox !== undefined ? (
+      statBox !== undefined && this.state.toggleStat ? (
         <Table
           tableHeaderColor="primary"
           tableHead={[
             "Name",
             "BW",
-            "Trend",
+            "BwT",
             "Perf",
             "Score",
             "Bu.",
@@ -156,7 +182,7 @@ class StatsCard extends React.Component {
       props.statIcon === undefined ? (
         ""
       ) : (
-        <CardActions className={classes.cardActions}>
+        <CardActions className={classes.cardActions} style={cardStyle}>
           <div className={classes.cardStats}>
             <props.statIcon
               className={
@@ -173,6 +199,7 @@ class StatsCard extends React.Component {
               statText
             ) : null}
           </div>
+          <div>{buttonStat}</div>
         </CardActions>
       );
 
@@ -201,7 +228,11 @@ class StatsCard extends React.Component {
               <small className={classes.cardTitleSmall}>{small}</small>
             ) : null}{" "}
           </Typography>
-          <Typography component="p" className={classes.cardCategory}>
+          <Typography
+            component="p"
+            className={classes.cardCategory}
+            style={releaseStyle}
+          >
             version : {release}
           </Typography>
         </CardContent>

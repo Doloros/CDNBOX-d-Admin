@@ -27,6 +27,7 @@ export default class ConsoleContainer extends Container {
       refresh: false,
       cdnNames: [],
       cdnBPs: [],
+      releases: [],
       dataChart: { data: { labels: [], series: [] } },
 
       boxStatesNS: [],
@@ -226,10 +227,14 @@ export default class ConsoleContainer extends Container {
         let process = values;
         let cdnNames = [];
         let cdnBPs = [];
+        let releases = [];
 
         Object.keys(values).forEach(function(key) {
           var internalName = values[key].name;
           var context = values[key].cdnboxes;
+          if (releases.indexOf(parseInt(values[key].release, 10)) === -1)
+            releases.push(parseInt(values[key].release, 10));
+
           Object.keys(context).forEach(function(key2) {
             if (context[key2].name === internalName) {
               process[key].local = context[key2];
@@ -247,7 +252,8 @@ export default class ConsoleContainer extends Container {
           cdnNames: cdnNames,
           cdnBPs: cdnBPs,
           dataChart: dataChart,
-          cdnboxesHTTP: process
+          cdnboxesHTTP: process,
+          releases: releases.sort()
         });
       });
     });
