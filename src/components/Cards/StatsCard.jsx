@@ -54,6 +54,7 @@ class StatsCard extends React.Component {
   }
 
   updateToggleStat = () => {
+    console.log("pouet");
     this.setState({ toggleStat: !this.state.toggleStat });
   };
 
@@ -116,17 +117,15 @@ class StatsCard extends React.Component {
     } = this.props;
     const props = this.props;
     const { query } = this.state;
+    //console.log(statBox);
+
     let buttonStat =
       statBox === undefined ? (
         ""
       ) : (
         //<Button onClick={this.updateToggleStat}>Show</Button>
-        <IconButton aria-label="Delete">
-          {this.state.toggleStat ? (
-            <ZoomOut onClick={this.updateToggleStat} />
-          ) : (
-            <ZoomIn onClick={this.updateToggleStat} />
-          )}
+        <IconButton aria-label="Delete" onClick={this.updateToggleStat}>
+          {this.state.toggleStat ? <ZoomOut /> : <ZoomIn />}
         </IconButton>
       );
     let showStats =

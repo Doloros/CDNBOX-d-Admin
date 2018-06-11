@@ -1,26 +1,17 @@
 import React from "react";
 import { withStyles } from "material-ui";
-import ReactJson from "react-json-view";
+import JSONInput from "react-json-editor-ajrm";
+import darktheme from "react-json-editor-ajrm";
 
 import ConsoleContainer from "../../containers/App/ConsoleContainer";
 
 import { Subscribe } from "unstated";
-import {
-  Update,
-  Check,
-  AddAlert
-} from "material-ui-icons";
+import { Update, Check, AddAlert } from "material-ui-icons";
 
-import {
-   Button,
-   Snackbar,
-   RegularCard
-} from "../../components";
+import { Button, Snackbar, RegularCard } from "../../components";
 import { Grid } from "material-ui";
-import {
-  StatsCard,
-  ItemGrid
-} from "../../components";
+import { StatsCard, ItemGrid } from "../../components";
+
 const style = {
   typo: {
     paddingLeft: "25%",
@@ -41,6 +32,7 @@ const style = {
     width: "260px"
   }
 };
+
 const divStyle = {
   cursor: "pointer"
 };
@@ -123,7 +115,6 @@ class Typography extends React.Component {
                                   JSON.stringify(cdnbox.json)
                                     ? () => {
                                         CC.uploadConfig(cdnbox);
-                                        
                                       }
                                     : () => {
                                         console.log("nothing to do");
@@ -172,19 +163,21 @@ class Typography extends React.Component {
                     </ItemGrid>
                   </Grid>
                 </div>
-                <div>
-                  <ReactJson
-                    indentWidth={3}
-                    collapseStringsAfterLength={40}
-                    theme={"google"}
-                    onAdd={CC.saveConfig}
-                    onDelete={CC.saveConfig}
-                    displayDataTypes={false}
-                    displayObjectSize={false}
-                    src={CC.state.newJson}
-                    onEdit={CC.saveConfig}
-                  />
-                </div>
+
+                <Grid container justify="center">
+                  <Subscribe to={[ConsoleContainer]}>
+                    {CC => (
+                      <JSONInput
+                        id="a_unique_id"
+                        placeholder={CC.state.newJson}
+                        colors={darktheme}
+                        height="850px"
+                        width="850px"
+                        onChange={CC.saveConfig}
+                      />
+                    )}
+                  </Subscribe>
+                </Grid>
               </div>
             }
           />
