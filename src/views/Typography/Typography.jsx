@@ -171,7 +171,6 @@ class Typography extends React.Component {
                         id="a_unique_id"
                         placeholder={CC.state.newJson}
                         colors={darktheme}
-                        height="850px"
                         width="850px"
                         onChange={CC.saveConfig}
                       />

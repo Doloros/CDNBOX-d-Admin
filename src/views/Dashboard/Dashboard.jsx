@@ -52,7 +52,7 @@ class Dashboard extends React.Component {
         <Grid container>
           <Subscribe to={[ConsoleContainer]}>
             {CC =>
-              CC.state.cdnboxesHTTP.map((cdnbox, i) => {
+              CC.state.boxStatesNS.map((cdnbox, i) => {
                 return (
                   <ItemGrid key={i} xs={12} sm={6} md={3}>
                     <StatsCard

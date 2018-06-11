@@ -34,7 +34,7 @@ export default class ConsoleContainer extends Container {
       cdnboxesHTTP: [],
       cdnboxesNoNS: [],
       onLoad: false,
-      interval: 5000,
+      interval: 1000,
       activeMenu: "Dashboard",
       rootConfig: []
     };
@@ -64,7 +64,7 @@ export default class ConsoleContainer extends Container {
     let arrPromise = [];
     let httpBox = [];
     let path = this.state.pathState;
-    arrPromise = this.state.cdnboxesHTTP.map(cdnbox => {
+    arrPromise = this.state.boxStatesNS.map(cdnbox => {
       httpBox.push(cdnbox);
 
       let url =
@@ -222,7 +222,7 @@ export default class ConsoleContainer extends Container {
       // get ALL Statements
       let arrPromise = [];
       let httpBox = [];
-      arrPromise = cdnboxesHTTP.map(cdnbox => {
+      arrPromise = boxStatesNS.map(cdnbox => {
         httpBox.push(cdnbox);
         let url = cdnbox.proto === undefined ? "https:" : cdnbox.proto;
         url += "//" + cdnbox.hostname + this.state.pathState;

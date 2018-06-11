@@ -49,7 +49,7 @@ class StatsCard extends React.Component {
     this.state = {
       open: false,
       query: "idle",
-      toggleStat: false
+      toggleStat: true
     };
   }
 

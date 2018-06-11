@@ -62,7 +62,7 @@ function CustomTable({ ...props }) {
                       key={key}
                       style={
                         key === 1 || key === 2
-                          ? parseInt(prop, 10) > 150
+                          ? parseInt(prop, 10) > 450
                             ? bwStyleAlert
                             : bwStyleOK
                           : fontSizeTable
