@@ -59,7 +59,6 @@ class Dashboard extends React.Component {
                       icon={Store}
                       iconColor="blue"
                       title={cdnbox.local.name}
-                      statIcon={Update}
                       statText="Just Updated"
                       description={Math.ceil(cdnbox.local.trendbw)}
                       small="MB"
