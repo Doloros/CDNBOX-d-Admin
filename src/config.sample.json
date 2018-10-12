@@ -1,0 +1,10 @@
+{
+  "clientName": "Client Name",
+  "rootHostname": "Root node host for config",
+  "rootName": "Root node name for config",
+  "rootProto": "https",
+  "pathState": "/cdn/api/states",
+  "pathConfig": "/cdn/config",
+  "auth": "Basic xxxx",
+  "escape": []
+}
